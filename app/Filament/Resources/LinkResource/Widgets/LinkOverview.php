@@ -17,6 +17,12 @@ class LinkOverview extends BaseWidget
     }
 
     #[\Override]
+    protected function getColumns(): int
+    {
+        return 2;
+    }
+
+    #[\Override]
     protected function getStats(): array
     {
         return [

@@ -87,12 +87,4 @@ class LinkResource extends Resource
             'view' => Pages\ViewLink::route('/{record}'),
         ];
     }
-
-    #[\Override]
-    public static function getWidgets(): array
-    {
-        return [
-            LinkResource\Widgets\LinkOverview::class,
-        ];
-    }
 }
