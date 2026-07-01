@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LinkResource\Pages;
+use App\Filament\Resources\LinkResource\RelationManagers;
 use App\Models\Link;
 use App\Models\Scopes\AuthUserScope;
 use Filament\Forms;
@@ -75,7 +76,7 @@ class LinkResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ClicksRelationManager::class,
         ];
     }
 
