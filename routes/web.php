@@ -16,7 +16,7 @@ Route::get('/{short_code}', static function (Request $request) {
     ]);
 
     if (App::hasDebugModeEnabled()) {
-        return response($link->original_url);
+        return view('click.debug', $link);
     }
 
     return redirect($link->original_url);
