@@ -41,10 +41,9 @@ class LinkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('short_code')
+                Tables\Columns\TextColumn::make('short_url')
                     ->label('Short URL')
                     ->color('primary')
-                    ->formatStateUsing(static fn (string $state): string => route('click', $state))
                     ->copyable(),
                 Tables\Columns\TextColumn::make('original_url')
                     ->label('Original URL')

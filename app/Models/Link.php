@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,6 +26,13 @@ class Link extends Model
     protected static function generateShortCode(int $size = 4): string
     {
         return \rtrim(\strtr(\base64_encode(\random_bytes($size)), '+/', '-_'), '=');
+    }
+
+    protected function shortUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn (): string => route('click', $this->short_code),
+        );
     }
 
     /**
