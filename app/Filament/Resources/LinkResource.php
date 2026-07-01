@@ -83,6 +83,7 @@ class LinkResource extends Resource
     {
         return [
             'index' => Pages\ListLinks::route('/'),
+            'view' => Pages\ViewLink::route('/{record}'),
         ];
     }
 
