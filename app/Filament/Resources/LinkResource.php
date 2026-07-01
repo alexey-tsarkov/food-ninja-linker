@@ -42,8 +42,7 @@ class LinkResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('short_code')
-                    ->label('Code')
-                    ->searchable(),
+                    ->label('Code'),
                 Tables\Columns\TextColumn::make('original_url')
                     ->label('Original URL')
                     ->searchable(),
@@ -81,6 +80,14 @@ class LinkResource extends Resource
     {
         return [
             'index' => Pages\ListLinks::route('/'),
+        ];
+    }
+
+    #[\Override]
+    public static function getWidgets(): array
+    {
+        return [
+            LinkResource\Widgets\LinkOverview::class,
         ];
     }
 }
