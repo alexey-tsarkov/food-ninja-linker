@@ -19,13 +19,23 @@ class Link extends Model
     {
         static::creating(static function (Link $link): void {
             $link->user_id = Auth::id();
-            $link->short_code ??= self::generateShortCode();
+            $link->short_code ??= self::uniqueShortCode();
         });
     }
 
     protected static function generateShortCode(int $size = 4): string
     {
         return \rtrim(\strtr(\base64_encode(\random_bytes($size)), '+/', '-_'), '=');
+    }
+
+    protected static function uniqueShortCode(): string
+    {
+        $size = 4;
+        do {
+            $code = self::generateShortCode($size++);
+        } while (self::where('short_code', $code)->exists());
+
+        return $code;
     }
 
     protected function shortUrl(): Attribute
