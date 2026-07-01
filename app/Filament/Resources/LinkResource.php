@@ -33,7 +33,8 @@ class LinkResource extends Resource
                     ->label('Original URL')
                     ->required()
                     ->maxLength(255)
-                    ->url()
+                    ->startsWith(['http://', 'https://'])
+                    ->activeUrl()
                     ->columnSpan('full'),
             ]);
     }
