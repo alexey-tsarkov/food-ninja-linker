@@ -42,9 +42,13 @@ class LinkResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('short_code')
-                    ->label('Code'),
+                    ->label('Short URL')
+                    ->color('primary')
+                    ->formatStateUsing(static fn (string $state): string => route('click', $state))
+                    ->copyable(),
                 Tables\Columns\TextColumn::make('original_url')
                     ->label('Original URL')
+                    ->limit(100)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('total_clicks')
                     ->label('Clicks')
